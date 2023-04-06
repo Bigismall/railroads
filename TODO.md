@@ -5,5 +5,5 @@
 - [ ] Implement velocity and acceleration
 - [ ] When there's no more railRoad, the train should stop or change direction
 - [ ] Prepare better assets for the train and land and switchers and stuff
-- [ ] Introduce train car class
+- [x] Introduce train car class
 - [ ] Add action to publish to GitHub Pages

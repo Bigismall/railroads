@@ -56,7 +56,7 @@ const locomotiveOnRail = new TrainOnRail(
     railRoads[0]
 );
 
-const railCars= [
+const railCars: RailCar[]= [
     new RailCar($(".js-car-1"), locomotiveOnRail, 1),
     new RailCar($(".js-car-2"), locomotiveOnRail, 2),
     new RailCar($(".js-car-3"), locomotiveOnRail, 3),
