@@ -58,12 +58,18 @@ const trainOnRail1 = new TrainOnRail(
   new Train(".js-train-1", { x: 0, y: 0 }, $trainSpeed.valueAsNumber, 0),
   railRoad1
 );
+const trainOnRail2 = new TrainOnRail(
+  new Train(".js-train-2", { x: 0, y: 0 }, $trainSpeed.valueAsNumber, 25),
+  railRoad1
+);
 
 $trainSpeed.addEventListener("change", (e) => {
   trainOnRail1.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
+  trainOnRail2.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
 });
 $trainDirection.addEventListener("click", () => {
   trainOnRail1.train.toggleDirection();
+  trainOnRail2.train.toggleDirection();
 });
 
 $switcher214.addEventListener("click", () => {
@@ -101,7 +107,7 @@ if (DEBUG) {
 
 function gameLoop() {
   trainOnRail1.gameLoop();
-  // trainOnRail2.gameLoop();
+  trainOnRail2.gameLoop();
   requestAnimationFrame(gameLoop);
 }
 

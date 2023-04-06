@@ -10,6 +10,8 @@
   <label>Speed: <input type="range" id="train-speed" class="controls__speed" min="0" max="10" step="1" value="3"/></label>
   <div class="controls__switches">
     <button type="button" id="train-direction">Direction</button>
+  </div>
+  <div class="controls__switches">
     <button type="button" id="switcher214">Switch 2/14</button>
     <button type="button" id="switcher47">Switch 4/7</button>
     <button type="button" id="switcher912">Switch 9/12</button>
@@ -18,7 +20,7 @@
 </nav>
 <main>
   <div class="playground__container">
-    <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 800 900" width="800" height="900" class="playground__canvas">
+    <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 800 800" width="800" height="800" class="playground__canvas">
       <defs>
         <filter id="double">
           <feMorphology in="SourceGraphic" result="a" operator="dilate" radius="2"/>
@@ -35,7 +37,6 @@
         <path d="M200 700 q 0 100, 100 100 h 200 q 100 0, 100,-100 v -300 v -200 q 0 -100, -100 -100"
               id="rail13"></path>
         <path d="M500 100 c -100 0, -100 100, -200 100" id="rail14"></path>
-        <polygon points="-10 -10,10 -10,10 10,-10 10" id="train"/>
       </defs>
       <use xlink:href="#rail1" class="rail__backing"></use>
       <use xlink:href="#rail2" class="rail__backing"></use>
@@ -58,10 +59,11 @@
       <use xlink:href="#rail12" class="rail__track rail__track--12" filter="url(#double)"></use>
       <use xlink:href="#rail13" class="rail__track rail__track--13" filter="url(#double)"></use>
       <use xlink:href="#rail14" class="rail__track rail__track--14" filter="url(#double)"></use>
-      <use xlink:href="#train" class="train__car js-train-1"></use>
     </svg>
+    <div class="train__car js-train-1">🚂</div>
+    <div class="train__car js-train-2">🚂</div>
   </div>
 </main>
 </body>
 </html>
-<!--https://css-tricks.com/svg-path-syntax-illustrated-guide/-->
+
