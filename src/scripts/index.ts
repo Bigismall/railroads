@@ -60,7 +60,9 @@ const trainOnRail1 = new TrainOnRail(
   railRoad1
 );
 
-const wagonTrain1  = new RailCar($(".js-car-1"),trainOnRail1)
+const wagonTrain1  = new RailCar($(".js-car-1"),trainOnRail1,1)
+const wagonTrain2  = new RailCar($(".js-car-2"),trainOnRail1,2)
+const wagonTrain3  = new RailCar($(".js-car-3"),trainOnRail1,3)
 
 // const trainOnRail2 = new TrainOnRail(
 //   new Train($(".js-train-2") , $trainSpeed.valueAsNumber, RAILROAD_VEHICLE_LENGTH + RAILROAD_VEHICLE_LENGTH),
@@ -73,7 +75,9 @@ $trainSpeed.addEventListener("change", (e) => {
 });
 $trainDirection.addEventListener("click", () => {
   trainOnRail1.train.toggleDirection();
-  // trainOnRail2.train.toggleDirection();
+  wagonTrain1.train.toggleDirection();
+  wagonTrain2.train.toggleDirection();
+  wagonTrain3.train.toggleDirection();
 });
 
 $switcher214.addEventListener("click", () => {
@@ -112,6 +116,8 @@ if (DEBUG) {
 function gameLoop() {
   trainOnRail1.gameLoop();
   wagonTrain1.gameLoop();
+  wagonTrain2.gameLoop();
+  wagonTrain3.gameLoop();
   // trainOnRail2.gameLoop();
   requestAnimationFrame(gameLoop);
 }
