@@ -5,6 +5,7 @@ import { Switcher } from "./switcher";
 import { TrainOnRail } from "./trainOnRail";
 import { $ } from "./dom";
 import { drawRailHelpers } from "./debug/helpers";
+import {RailCar} from "./railCar";
 
 // @ts-ignore
 const DEBUG = String(import.meta.env.VITE_DEBUG ?? "").toUpperCase() === "TRUE";
@@ -55,21 +56,24 @@ const switcher912 = new Switcher(railRoad9, railRoad12);
 const switcher611 = new Switcher(railRoad6, railRoad11);
 
 const trainOnRail1 = new TrainOnRail(
-  new Train(".js-train-1", { x: 0, y: 0 }, $trainSpeed.valueAsNumber, 0),
-  railRoad1
-);
-const trainOnRail2 = new TrainOnRail(
-  new Train(".js-train-2", { x: 0, y: 0 }, $trainSpeed.valueAsNumber, 25),
+  new Train($(".js-train-1") , $trainSpeed.valueAsNumber, 0),
   railRoad1
 );
 
+const wagonTrain1  = new RailCar($(".js-car-1"),trainOnRail1)
+
+// const trainOnRail2 = new TrainOnRail(
+//   new Train($(".js-train-2") , $trainSpeed.valueAsNumber, RAILROAD_VEHICLE_LENGTH + RAILROAD_VEHICLE_LENGTH),
+//   railRoad1
+// );
+
 $trainSpeed.addEventListener("change", (e) => {
   trainOnRail1.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
-  trainOnRail2.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
+  // trainOnRail2.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
 });
 $trainDirection.addEventListener("click", () => {
   trainOnRail1.train.toggleDirection();
-  trainOnRail2.train.toggleDirection();
+  // trainOnRail2.train.toggleDirection();
 });
 
 $switcher214.addEventListener("click", () => {
@@ -107,7 +111,8 @@ if (DEBUG) {
 
 function gameLoop() {
   trainOnRail1.gameLoop();
-  trainOnRail2.gameLoop();
+  wagonTrain1.gameLoop();
+  // trainOnRail2.gameLoop();
   requestAnimationFrame(gameLoop);
 }
 

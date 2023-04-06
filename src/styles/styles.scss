@@ -86,8 +86,8 @@ main {
     }
 }
 
-.train {
-    @include e('car') {
+.vehicle {
+    @include e('locomotive') {
         --train-translate-x: 0px;
         --train-translate-y: 0px;
         --train-rotate: 0deg;
@@ -104,6 +104,7 @@ main {
         transform-origin: center center;
         transform: translate(var(--train-translate-x), var(--train-translate-y)) rotate(var(--train-rotate));
     }
+
 }
 
 .controls{

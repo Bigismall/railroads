@@ -1,7 +1,7 @@
 import { Train } from "./train";
 import { $ } from "./dom";
 import { CSS_CLASS_RAIL_ACTIVE, DIR_BACKWARD, DIR_FORWARD } from "./constants";
-import { Point, RailActive, RailLength, TrainDirection } from "./types";
+import { Point, RailActive, RailLength, RailRoadVehicle } from "./types";
 import { distance } from "./utils/distance";
 
 export class Rail {
@@ -48,7 +48,7 @@ export class Rail {
     return this._next.length === 1 ? this._next[0] : this.nextActive || null;
   }
 
-  getNextDirection(train: Train, nextRail: Rail): TrainDirection {
+  getNextDirection(train: Train, nextRail: Rail): RailRoadVehicle {
     const distanceStart = distance(
       train.getOnCanvas().position,
       nextRail.start
