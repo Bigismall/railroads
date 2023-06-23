@@ -1,6 +1,6 @@
 import {DIR_BACKWARD, DIR_FORWARD} from "./constants";
 import {Rail} from "./rail";
-import {OnCanvas, OnPath, Point, RailRoadVehicleLength, RailRoadVehicleSpeed} from "./types";
+import {OnCanvas, OnPath, Point, RailRoadVehicleSpeed} from "./types";
 import {angle} from "./utils/angle";
 
 
@@ -12,13 +12,11 @@ export class Train {
     private speed: RailRoadVehicleSpeed;
     private onPath: OnPath;
     private onCanvas: OnCanvas;
-    private length: RailRoadVehicleLength;
 
     constructor(
         selector: HTMLElement | null,
         speed = 1,
         positionOnPath = 0,
-        length: RailRoadVehicleLength = RAILROAD_VEHICLE_LENGTH,
     ) {
         if (!selector) {
             throw new Error("No selector provided");
@@ -26,7 +24,6 @@ export class Train {
 
         this.$element = selector;
         this.speed = speed;
-        this.length = length;
         this.onCanvas = {
             position: {x: 0, y: 0},
             angle: 0,
