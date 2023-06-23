@@ -17,7 +17,7 @@ export class Train {
     speed = 1,
     positionOnPath = 0
   ) {
-    if (selector == null) {
+    if (selector === null) {
       throw new Error('No selector provided')
     }
 

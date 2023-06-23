@@ -14,9 +14,13 @@ export class Rail {
   private readonly _prev: Rail[] = []
 
   constructor (selector = '', isActive = false) {
-    this.$element = $(selector)!
+    const element: SVGGeometryElement | null = $(selector)
+    if (element === null) {
+      throw new Error(`No element found: ${selector}`)
+    }
+    this.$element = element
     this.active = isActive
-    this.length = this.$element ? this.$element.getTotalLength() : 0
+    this.length = this.$element.getTotalLength()
 
     const pathStart = this.$element.getPointAtLength(0)
     const pathEnd = this.$element.getPointAtLength(this.length)
@@ -57,11 +61,25 @@ export class Rail {
   }
 
   getPrevRail () {
-    return this._prev.length === 1 ? this._prev[0] : (this.prevActive != null) || null
+    if (this._prev.length === 0) {
+      return null
+    }
+    if (this._prev.length === 1) {
+      return this._prev[0]
+    }
+    return this.prevActive ?? null
+    // return this._prev.length === 1 ? this._prev[0] : (this.prevActive != null) || null
   }
 
   getNextRail () {
-    return this._next.length === 1 ? this._next[0] : (this.nextActive != null) || null
+    if (this._next.length === 0) {
+      return null
+    }
+    if (this._next.length === 1) {
+      return this._next[0]
+    }
+    return this.nextActive ?? null
+    // return this._next.length === 1 ? this._next[0] : (this.nextActive != null) || null
   }
 
   getNextDirection (train: Train, nextRail: Rail): RailRoadVehicle {

@@ -16,14 +16,13 @@ export class TrainOnRail {
       if (this.passedRail()) {
         const nextRail = this.rail.getNextRail()
 
-        if (!nextRail) {
+        if (nextRail === null) {
           // TODO: stop train, or change its direction
           return
         }
 
         const nextDirection = this.rail.getNextDirection(this.train, nextRail)
-        const positionOnPath =
-                    nextDirection === DIR_FORWARD ? 0 : nextRail.length
+        const positionOnPath = nextDirection === DIR_FORWARD ? 0 : nextRail.length
 
         this.train.setOnPath(nextDirection, positionOnPath)
         this.rail = nextRail
@@ -31,14 +30,13 @@ export class TrainOnRail {
     } else {
       if (this.backOffRail()) {
         const prevRail = this.rail.getPrevRail()
-        if (!prevRail) {
+        if (prevRail === null) {
           // TODO: stop train, or change its direction
           return
         }
 
         const prevDirection = this.rail.getNextDirection(this.train, prevRail)
-        const positionOnPath =
-                    prevDirection === DIR_FORWARD ? 0 : prevRail.length
+        const positionOnPath = prevDirection === DIR_FORWARD ? 0 : prevRail.length
 
         this.train.setOnPath(prevDirection, positionOnPath)
         this.rail = prevRail
