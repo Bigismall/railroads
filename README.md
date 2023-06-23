@@ -10,6 +10,10 @@ As long as you want to have more control over the animations (speed, direction, 
 
 ![Cover](docs/cover.png)
 
+### Live demo ###
+[https://bigismall.github.io/railroads/](https://bigismall.github.io/railroads/) 
+
+
 ## Motivation ##
 
 * SVG illustrated guide: https://css-tricks.com/svg-path-syntax-illustrated-guide/
