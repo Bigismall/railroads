@@ -24,14 +24,9 @@ const railRoads: Rail[] = [
     new Rail("#rail14"),
 ]
 
-
-
 const $trainSpeed = $("#train-speed")! as HTMLInputElement;
 const $trainDirection = $("#train-direction")! as HTMLButtonElement;
-const $switcher214 = $("#switcher214")!;
-const $switcher47 = $("#switcher47")!;
-const $switcher912 = $("#switcher912")!;
-const $switcher611 = $("#switcher611")!;
+
 
 Rail.connect(railRoads[0], railRoads[1]);
 Rail.hit(railRoads[0], railRoads[9]); //opposite direction
@@ -46,10 +41,10 @@ Rail.connect(railRoads[6], railRoads[0]);
 Rail.connect(railRoads[7], railRoads[8]);
 Rail.connect(railRoads[8], railRoads[9]);
 
-const switcher214 = new Switcher(railRoads[1], railRoads[9]);
-const switcher47 = new Switcher(railRoads[2], railRoads[4]);
-const switcher912 = new Switcher(railRoads[5], railRoads[7]);
-const switcher611 = new Switcher(railRoads[3], railRoads[6]);
+new Switcher(railRoads[1], railRoads[9]);
+new Switcher(railRoads[2], railRoads[4]);
+new Switcher(railRoads[5], railRoads[7]);
+new Switcher(railRoads[3], railRoads[6]);
 
 const locomotiveOnRail = new TrainOnRail(
     new Locomotive($(".js-train-1"), $trainSpeed.valueAsNumber, 0),
@@ -62,28 +57,14 @@ const railCars: RailCar[]= [
     new RailCar($(".js-car-3"), locomotiveOnRail, 3),
 ]
 
-
-
 $trainSpeed.addEventListener("change", (e) => {
     locomotiveOnRail.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
     // trainOnRail2.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
 });
+
 $trainDirection.addEventListener("click", () => {
     locomotiveOnRail.train.toggleDirection();
     railCars.forEach((car) => car.train.toggleDirection());
-});
-
-$switcher214.addEventListener("click", () => {
-    switcher214.toggle();
-});
-$switcher47.addEventListener("click", () => {
-    switcher47.toggle();
-});
-$switcher912.addEventListener("click", () => {
-    switcher912.toggle();
-});
-$switcher611.addEventListener("click", () => {
-    switcher611.toggle();
 });
 
 

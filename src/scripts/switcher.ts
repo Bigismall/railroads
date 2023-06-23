@@ -10,6 +10,11 @@ export class Switcher {
         this.rails = [rail1, rail2];
         this.activeRail = activeRail;
         this.toggle(this.activeRail);
+
+        //Toggle rail on click
+        this.rails.forEach((rail) => {
+            rail.$element.addEventListener("click", () => this.toggle());
+        });
     }
 
     public toggle(railNumber?: SwitcherIndex) {
