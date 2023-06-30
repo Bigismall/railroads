@@ -1,5 +1,5 @@
 import { type Rail } from '../rail'
-import { distance } from '../utils/distance'
+import { simpleDistance } from '../utils/distance'
 import { debugAngle } from '../utils/angle'
 import { $ } from '../dom'
 
@@ -9,7 +9,7 @@ export const drawRailHelpers = (rail: Rail): void => {
   const label = rail.$element.id
   railHelper.innerText = label
 
-  const dist = distance(rail.start, rail.end)
+  const dist = simpleDistance(rail.start, rail.end)
   const ang = debugAngle(rail.start, rail.end)
   const width = rail.end.x - rail.start.x
   const height = rail.end.y - rail.start.y

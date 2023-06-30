@@ -1,7 +1,7 @@
 import { $ } from './dom'
 import { CSS_CLASS_RAIL_ACTIVE, DIR_BACKWARD, DIR_FORWARD } from './constants'
 import { type Point, type RailActive, type RailLength, type RailRoadVehicle } from './types'
-import { distance } from './utils/distance'
+import { simpleDistance } from './utils/distance'
 import { type Train } from './train'
 
 export class Rail {
@@ -83,11 +83,11 @@ export class Rail {
   }
 
   getNextDirection (train: Train, nextRail: Rail): RailRoadVehicle {
-    const distanceStart = distance(
+    const distanceStart = simpleDistance(
       train.getOnCanvas().position,
       nextRail.start
     )
-    const distanceEnd = distance(train.getOnCanvas().position, nextRail.end)
+    const distanceEnd = simpleDistance(train.getOnCanvas().position, nextRail.end)
     // compare train x/y with nextRail start/end
     // if Start is closer, then return 1, else return -1
     return distanceStart < distanceEnd ? DIR_FORWARD : DIR_BACKWARD

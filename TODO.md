@@ -7,3 +7,5 @@
 - [ ] Prepare better assets for the train and land and switchers and stuff
 - [x] Introduce train car class
 - [x] Add action to publish to GitHub Pages
+- [x] Add ChatGPT to codereview (https://blog.gopenai.com/how-to-use-chat-gpt-to-review-your-pull-requests-a5831ccf7286)
+- [ ] Train should keep all the cars
