@@ -1,4 +1,4 @@
-name: Code Review
+name: Code Review with Chat-GPT
 
 permissions:
   contents: read
