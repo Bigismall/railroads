@@ -18,6 +18,8 @@ export class Rail {
 		if (element === null) {
 			throw new Error(`No element found: ${selector}`);
 		}
+		// TODO: use pathToPoints to get the points of the path
+
 		this.$element = element;
 		this.active = isActive;
 		this.length = this.$element.getTotalLength();

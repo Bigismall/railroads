@@ -55,6 +55,14 @@ export class Train {
 		};
 	}
 
+	setSpeed(speed: RailRoadVehicleSpeed) {
+		this.speed = speed;
+	}
+
+	getSpeed() {
+		return this.speed;
+	}
+
 	getOnCanvas() {
 		return this.onCanvas;
 	}
@@ -77,14 +85,6 @@ export class Train {
 
 	toggleDirection() {
 		this.onPath.direction *= DIR_BACKWARD;
-	}
-
-	setSpeed(speed: RailRoadVehicleSpeed) {
-		this.speed = speed;
-	}
-
-	getSpeed() {
-		return this.speed;
 	}
 
 	private setCanvasValues() {
