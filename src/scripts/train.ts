@@ -68,12 +68,26 @@ export class Train {
 	}
 
 	updatePosition(rail: Rail) {
-		const currentPositionOnPath: Point = rail.$element.getPointAtLength(
-			this.onPath.position,
-		);
-		const previousPositionOnPath: Point = rail.$element.getPointAtLength(
-			this.onPath.position - 1,
-		);
+		// const currentPositionOnPath: Point = rail.$element.getPointAtLength(
+		// 	this.onPath.position,
+		// );
+		// const previousPositionOnPath: Point = rail.$element.getPointAtLength(
+		// 	this.onPath.position - 1,
+		// );
+
+		// That's depend on the direction a bit
+		const currentPositionOnPath: Point = rail.path.points[
+			this.onPath.position
+		] ?? {
+			x: 0,
+			y: 0,
+		};
+		const previousPositionOnPath: Point = rail.path.points[
+			this.onPath.position - 1
+		] ?? {
+			x: 0,
+			y: 0,
+		};
 
 		this.setOnCanvas(
 			currentPositionOnPath,

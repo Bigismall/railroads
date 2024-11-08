@@ -1,11 +1,20 @@
 import { CSS_CLASS_RAIL_ACTIVE, DIR_BACKWARD, DIR_FORWARD } from "./constants";
 import { $ } from "./dom";
 import type { Train } from "./train";
-import type { Point, RailActive, RailLength, RailRoadVehicle } from "./types";
+import type {
+	Path,
+	Point,
+	RailActive,
+	RailLength,
+	RailRoadVehicle,
+} from "./types";
 import { simpleDistance } from "./utils/distance";
+import { getPathPointsAndLength } from "./utils/pathToPoints";
 
 export class Rail {
 	public $element: SVGGeometryElement;
+	public path: Path;
+
 	public active: RailActive;
 	public length: RailLength;
 	public start: Point;
@@ -22,13 +31,20 @@ export class Rail {
 
 		this.$element = element;
 		this.active = isActive;
-		this.length = this.$element.getTotalLength();
+		this.path = getPathPointsAndLength(this.$element);
 
-		const pathStart = this.$element.getPointAtLength(0);
-		const pathEnd = this.$element.getPointAtLength(this.length);
+		//Temporary, just to keep interface the same
+		this.length = this.path.totalLength;
+		this.start = this.path.start;
+		this.end = this.path.end;
 
-		this.start = { x: pathStart.x, y: pathStart.y };
-		this.end = { x: pathEnd.x, y: pathEnd.y };
+		// this.length = this.$element.getTotalLength();
+
+		// const pathStart = this.$element.getPointAtLength(0);
+		// const pathEnd = this.$element.getPointAtLength(this.length);
+
+		// this.start = { x: pathStart.x, y: pathStart.y };
+		// this.end = { x: pathEnd.x, y: pathEnd.y };
 
 		this._next = [];
 		this._prev = [];
