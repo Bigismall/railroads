@@ -34,7 +34,10 @@ export class RailCar extends TrainOnRail {
 
 	gameLoop(): void {
 		this.train.setSpeed(this.root.train.getSpeed());
-		// this.train.setOnPath(this.root.train.getOnPath().direction, this.train.getOnPath().position);
+		// this.train.setOnPath(
+		// 	this.root.train.getOnPath().direction,
+		// 	this.train.getOnPath().position,
+		// );
 		super.gameLoop();
 	}
 }

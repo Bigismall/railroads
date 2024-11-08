@@ -57,6 +57,9 @@ const railCars: RailCar[] = [
 	new RailCar($(".js-car-1"), locomotiveOnRail, 1),
 	new RailCar($(".js-car-2"), locomotiveOnRail, 2),
 	new RailCar($(".js-car-3"), locomotiveOnRail, 3),
+	new RailCar($(".js-car-4"), locomotiveOnRail, 4),
+	new RailCar($(".js-car-5"), locomotiveOnRail, 5),
+	new RailCar($(".js-car-6"), locomotiveOnRail, 6),
 ];
 
 $trainSpeed.addEventListener("change", (e) => {
