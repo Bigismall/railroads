@@ -1,7 +1,25 @@
 import { $ } from "../dom";
 import type { Rail } from "../rail";
+import type { Point } from "../types";
 import { debugAngle } from "../utils/angle";
 import { simpleDistance } from "../utils/distance";
+
+export const drawRailPoints = (rail: Rail): void => {
+	// For given rail, use the path points and draw 10 points starting from the first point to end point.
+	const $container = $(".playground__container");
+	const points: Point[] = rail.path.points;
+	const pointsCount = points.length;
+	const step = Math.floor(pointsCount / 10);
+	const pointsToDraw = points.filter((_, i) => i % step === 0);
+	pointsToDraw.forEach((point, index) => {
+		const pointElement = document.createElement("div");
+		pointElement.classList.add("rail__point");
+		pointElement.style.left = `${point.x}px`;
+		pointElement.style.top = `${point.y}px`;
+		pointElement.innerText = `${index}`;
+		$container?.appendChild(pointElement);
+	});
+};
 
 export const drawRailHelpers = (rail: Rail): void => {
 	const $container = $(".playground__container");

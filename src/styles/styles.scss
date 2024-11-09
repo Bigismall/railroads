@@ -7,6 +7,7 @@
 html {
   accent-color: darkred;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 16px;
 }
 
 body {
@@ -84,6 +85,14 @@ main {
     color: yellow;
     font-size: 2rem;
     text-shadow: #000 1px 1px 5px;
+  }
+
+  @include e('point') {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+    padding: 0.25rem;
+    border-radius: 50%;
   }
 }
 
