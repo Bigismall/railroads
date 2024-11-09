@@ -4,13 +4,14 @@ import type { Point } from "../types";
 import { debugAngle } from "../utils/angle";
 import { simpleDistance } from "../utils/distance";
 
-export const drawRailPoints = (rail: Rail): void => {
+export const drawRailPoints = (rail: Rail, howmany = 10): void => {
 	// For given rail, use the path points and draw 10 points starting from the first point to end point.
 	const $container = $(".playground__container");
 	const points: Point[] = rail.path.points;
 	const pointsCount = points.length;
-	const step = Math.floor(pointsCount / 10);
+	const step = Math.floor(pointsCount / howmany);
 	const pointsToDraw = points.filter((_, i) => i % step === 0);
+
 	pointsToDraw.forEach((point, index) => {
 		const pointElement = document.createElement("div");
 		pointElement.classList.add("rail__point");

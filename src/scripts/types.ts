@@ -25,6 +25,7 @@ export interface OnCanvas {
 export type SwitcherIndex = 0 | 1; // 0 = left, 1 = right
 
 export type Path = {
+	reverted: Point[];
 	points: Point[];
 	totalLength: number;
 	start: Point;

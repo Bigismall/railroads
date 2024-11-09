@@ -7,8 +7,8 @@ import { RailCar } from "./railCar";
 import { Switcher } from "./switcher";
 import { TrainOnRail } from "./trainOnRail";
 
-// const DEBUG = String(import.meta.env.VITE_DEBUG ?? "").toUpperCase() === "TRUE";
-const DEBUG = true;
+const DEBUG = String(import.meta.env.VITE_DEBUG ?? "").toUpperCase() === "TRUE";
+//VITE_DEBUG=true
 console.log("DEBUG", DEBUG);
 
 const railRoads: Rail[] = [
@@ -65,7 +65,6 @@ const railCars: RailCar[] = [
 
 $trainSpeed.addEventListener("change", (e) => {
 	locomotiveOnRail.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
-	// trainOnRail2.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
 });
 
 $trainDirection.addEventListener("click", () => {
@@ -76,19 +75,14 @@ $trainDirection.addEventListener("click", () => {
 });
 
 if (DEBUG) {
-	// TODO: Prepare function to draw  some path points
-
-	drawRailPoints(railRoads[0]);
+	for (const railRoad of railRoads) {
+		drawRailPoints(railRoad, 5);
+	}
 	drawRailHelpers(railRoads[0]);
-	// drawRailHelpers(railRoads[1]);
-	// drawRailHelpers(railRoads[2]);
-	// drawRailHelpers(railRoads[3]);
-	// drawRailHelpers(railRoads[4]);
-	// drawRailHelpers(railRoads[5]);
-	// drawRailHelpers(railRoads[6]);
-	// drawRailHelpers(railRoads[7]);
-	// drawRailHelpers(railRoads[8]);
-	// drawRailHelpers(railRoads[9]);
+	drawRailHelpers(railRoads[1]);
+	drawRailHelpers(railRoads[3]);
+	drawRailHelpers(railRoads[4]);
+	drawRailHelpers(railRoads[6]);
 }
 
 const gameLoop = (): void => {

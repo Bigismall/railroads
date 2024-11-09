@@ -3,6 +3,7 @@ import type { Path, Point } from "../types";
 export const getPathPointsAndLength = (path: SVGPathElement): Path => {
 	const totalLength: number = path.getTotalLength();
 	const points: Point[] = [];
+
 	const start: Point = path.getPointAtLength(0);
 	const end: Point = path.getPointAtLength(totalLength);
 
@@ -11,5 +12,7 @@ export const getPathPointsAndLength = (path: SVGPathElement): Path => {
 		points.push({ x: point.x, y: point.y });
 	}
 
-	return { points, totalLength, start, end };
+	const reverted = points.slice().reverse();
+
+	return { points, reverted, totalLength, start, end };
 };
