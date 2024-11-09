@@ -80,9 +80,10 @@ if (DEBUG) {
 	}
 	drawRailHelpers(railRoads[0]);
 	drawRailHelpers(railRoads[1]);
+	drawRailHelpers(railRoads[2]);
 	drawRailHelpers(railRoads[3]);
-	drawRailHelpers(railRoads[4]);
 	drawRailHelpers(railRoads[6]);
+	drawRailHelpers(railRoads[9]);
 }
 
 const gameLoop = (): void => {
