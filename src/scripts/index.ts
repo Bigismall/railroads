@@ -24,10 +24,9 @@ const railRoads: Rail[] = [
 ];
 
 const $trainSpeed: HTMLInputElement | null = $("#train-speed") ?? null;
-const $trainDirection: HTMLButtonElement | null = $("#train-direction") ?? null;
 
-if (!$trainSpeed || !$trainDirection) {
-	throw new Error("Missing train-speed or train-direction element");
+if (!$trainSpeed) {
+	throw new Error("Missing train-speed element");
 }
 
 Rail.connect(railRoads[0], railRoads[1]);
@@ -59,16 +58,34 @@ const railCars: RailCar[] = [
 	new RailCar($(".js-car-3"), locomotiveOnRail, 3),
 ];
 
-$trainSpeed.addEventListener("change", (e) => {
-	locomotiveOnRail.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
-	// trainOnRail2.train.setSpeed((e.target as HTMLInputElement).valueAsNumber);
+const setTrainSpeed = (speed: number): void => {
+	if (!Number.isFinite(speed)) {
+		return;
+	}
+
+	const min =
+		$trainSpeed.min === "" ? Number.NEGATIVE_INFINITY : Number($trainSpeed.min);
+	const max =
+		$trainSpeed.max === "" ? Number.POSITIVE_INFINITY : Number($trainSpeed.max);
+	const clampedSpeed = Math.min(max, Math.max(min, speed));
+
+	$trainSpeed.valueAsNumber = clampedSpeed;
+	locomotiveOnRail.train.setSpeed(clampedSpeed);
+};
+
+$trainSpeed.addEventListener("input", () => {
+	setTrainSpeed($trainSpeed.valueAsNumber);
 });
 
-$trainDirection.addEventListener("click", () => {
-	locomotiveOnRail.train.toggleDirection();
-	for (const car of railCars) {
-		car.train.toggleDirection();
+window.addEventListener("keydown", (event) => {
+	if (event.key !== "ArrowUp" && event.key !== "ArrowDown") {
+		return;
 	}
+
+	event.preventDefault();
+	const step = $trainSpeed.step === "any" ? 1 : Number($trainSpeed.step || 1);
+	const speedDelta = event.key === "ArrowUp" ? step : -step;
+	setTrainSpeed($trainSpeed.valueAsNumber + speedDelta);
 });
 
 if (DEBUG) {

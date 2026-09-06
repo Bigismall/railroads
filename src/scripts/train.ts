@@ -30,7 +30,7 @@ export class Train {
 	}
 
 	isMovingForward() {
-		return this.onPath.direction === DIR_FORWARD;
+		return this.onPath.direction * Math.sign(this.speed) === DIR_FORWARD;
 	}
 
 	isMovingBackward() {
@@ -73,10 +73,6 @@ export class Train {
 		);
 		this.setCanvasValues();
 		this.move();
-	}
-
-	toggleDirection() {
-		this.onPath.direction *= DIR_BACKWARD;
 	}
 
 	setSpeed(speed: RailRoadVehicleSpeed) {
