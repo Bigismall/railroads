@@ -4,15 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Railroad demo</title>
-  <script type="module" crossorigin src="/railroads/assets/index-BA5u7ELk.js"></script>
-  <link rel="stylesheet" crossorigin href="/railroads/assets/index-BtXwrO2P.css">
+  <script type="module" crossorigin src="/railroads/assets/index-DzorEQfD.js"></script>
+  <link rel="stylesheet" crossorigin href="/railroads/assets/index-GV04qQED.css">
 </head>
 
 <body>
   <nav class="controls">
-    <label>Speed: <input type="range" id="train-speed" class="controls__speed" min="-10" max="10" step="1"
-        value="1" /></label>
-    <p>Use ↑/↓ to change speed. A negative speed moves the train backwards.</p>
+    <label class="controls__row">
+      <span>Target speed</span>
+      <output id="target-speed-value">1.00</output>
+      <input type="range" id="train-speed" class="controls__speed" min="-5" max="5" step="0.25" value="1" />
+    </label>
+    <div class="controls__row" role="group" aria-labelledby="current-speed-label">
+      <span id="current-speed-label">Current speed</span>
+      <output id="current-speed-value">0.00</output>
+      <div id="current-speed-meter" class="controls__meter" role="meter" aria-valuemin="-5" aria-valuemax="5"
+        aria-valuenow="0" aria-valuetext="0.00">
+        <span class="controls__meter-fill"></span>
+      </div>
+    </div>
+    <p>Use ↑/↓ to set target speed. A negative speed moves the train backwards.</p>
     <p>💁 Click the switcher to change the track direction.</p>
   </nav>
   <main>
