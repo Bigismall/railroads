@@ -43,6 +43,8 @@ const $currentSpeedValue: HTMLOutputElement | null =
 	$("#current-speed-value") ?? null;
 const $currentSpeedMeter: HTMLElement | null =
 	$("#current-speed-meter") ?? null;
+const $playgroundTerrain: HTMLElement | null =
+	$(".js-playground-terrain") ?? null;
 
 if (!$trainSpeed) {
 	throw new Error("Missing train-speed element");
@@ -59,6 +61,60 @@ if (!$currentSpeedValue) {
 if (!$currentSpeedMeter) {
 	throw new Error("Missing current-speed-meter element");
 }
+
+if (!$playgroundTerrain) {
+	throw new Error("Missing playground terrain element");
+}
+
+const TERRAIN_TILES: Record<string, string> = {
+	G: "tile-grass-1",
+	g: "tile-grass-2",
+	S: "tile-sand-1",
+	s: "tile-sand-2",
+	H: "tile-grass-road-east",
+	V: "tile-grass-road-north",
+	C: "tile-grass-road-crossing",
+	N: "tile-grass-road-split-n",
+	E: "tile-grass-road-split-e",
+	L: "tile-grass-road-corner-ll",
+	R: "tile-grass-road-corner-lr",
+	U: "tile-grass-road-corner-ul",
+	Q: "tile-grass-road-corner-ur",
+	D: "tile-grass-road-transition-s-dirt",
+	T: "tile-grass-transition-e",
+	B: "tile-tree-brown-large",
+	Y: "tile-tree-green-large",
+};
+
+const TERRAIN_MAP = [
+	"ggGGSSVSSGGgg",
+	"GSSSUUNSSSGGG",
+	"GHHHCCHHHHSGG",
+	"ggGGLVRGGSSGG",
+	"SSGGDVTGGggGY",
+	"GHHHCCHHHHGGg",
+	"GGssLVRSSGGGG",
+	"ggGGSVSSGGGgg",
+	"YGGGSVSSGSSGG",
+	"GGHHNEHHQSSGG",
+	"SSGGLVRGGGGGG",
+	"GGGGSVSSGGGBG",
+	"gSSSHCHHHGGGG",
+	"ggGGSSVSSGGgg",
+];
+
+const drawTerrain = (): void => {
+	const tiles = TERRAIN_MAP.flatMap((row) =>
+		[...row].map((tileKey) => {
+			const tileName = TERRAIN_TILES[tileKey] ?? TERRAIN_TILES.G;
+			return `<span class="terrain-tile terrain-tile--${tileName}"></span>`;
+		}),
+	);
+
+	$playgroundTerrain.innerHTML = tiles.join("");
+};
+
+drawTerrain();
 
 Rail.connect(railRoads[0], railRoads[1]);
 Rail.hit(railRoads[0], railRoads[9]); // opposite direction
