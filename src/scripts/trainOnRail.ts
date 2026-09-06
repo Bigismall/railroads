@@ -11,9 +11,9 @@ export class TrainOnRail {
 		this.rail = rail;
 	}
 
-	gameLoop() {
+	gameLoop(deltaTime: number) {
 		if (this.train.getSpeed() === 0) {
-			this.train.updatePosition(this.rail);
+			this.train.updatePosition(this.rail, deltaTime);
 			return;
 		}
 
@@ -62,7 +62,7 @@ export class TrainOnRail {
 			}
 		}
 
-		this.train.updatePosition(this.rail);
+		this.train.updatePosition(this.rail, deltaTime);
 	}
 
 	private passedRail() {

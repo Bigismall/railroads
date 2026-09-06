@@ -6,19 +6,30 @@ import { angle } from "./utils/angle";
 export const RAILROAD_VEHICLE_LENGTH = 20;
 export const RAILROAD_VEHICLE_SPACE = 5;
 
+export interface TrainOptions {
+	mass?: number;
+}
+
 export class Train {
 	public $element: HTMLElement;
 	private speed: RailRoadVehicleSpeed;
+	private mass: number;
 	private onPath: OnPath;
 	private onCanvas: OnCanvas;
 
-	constructor(selector: HTMLElement | null, speed = 1, positionOnPath = 0) {
+	constructor(
+		selector: HTMLElement | null,
+		speed = 1,
+		positionOnPath = 0,
+		options: TrainOptions = {},
+	) {
 		if (selector === null) {
 			throw new Error("No selector provided");
 		}
 
 		this.$element = selector;
 		this.speed = speed;
+		this.mass = options.mass ?? 1;
 		this.onCanvas = {
 			position: { x: 0, y: 0 },
 			angle: 0,
@@ -59,7 +70,7 @@ export class Train {
 		return this.onCanvas;
 	}
 
-	updatePosition(rail: Rail) {
+	updatePosition(rail: Rail, deltaTime: number) {
 		const currentPositionOnPath: Point = rail.$element.getPointAtLength(
 			this.onPath.position,
 		);
@@ -72,7 +83,7 @@ export class Train {
 			angle(previousPositionOnPath, currentPositionOnPath),
 		);
 		this.setCanvasValues();
-		this.move();
+		this.move(deltaTime);
 	}
 
 	setSpeed(speed: RailRoadVehicleSpeed) {
@@ -81,6 +92,10 @@ export class Train {
 
 	getSpeed() {
 		return this.speed;
+	}
+
+	getMass() {
+		return this.mass;
 	}
 
 	private setCanvasValues() {
@@ -98,7 +113,7 @@ export class Train {
 		);
 	}
 
-	private move() {
-		this.onPath.position += this.onPath.direction * this.speed;
+	private move(deltaTime: number) {
+		this.onPath.position += this.onPath.direction * this.speed * deltaTime;
 	}
 }
