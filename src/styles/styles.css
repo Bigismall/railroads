@@ -1,9 +1,9 @@
 :root {
 	--color-grass: #00892f;
 	--color-grass-dot: #00e129;
-	--color-rail: #444;
-	--color-rail-backing: #ddd;
-	--color-rail-active: orange;
+	--color-rail: #d0d0d0;
+	--color-rail-backing: #5e3000;
+	--color-rail-active: #a87b7b;
 	--color-control-accent: darkred;
 	--color-meter-track: #ddd;
 	--color-meter-tick: #fff8;
