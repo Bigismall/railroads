@@ -1,4 +1,4 @@
-import "./../styles/styles.scss";
+import "./../styles/styles.css";
 import { drawRailHelpers } from "./debug/helpers";
 import { $ } from "./dom";
 import { Locomotive } from "./locomotive";
